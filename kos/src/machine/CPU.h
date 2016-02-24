@@ -143,7 +143,8 @@ namespace CPU {
     asm volatile("invlpg (%0)" :: "r"(val) : "memory");
   }
 
-  static inline mword readTSC() {
+  static inline mword readTSC() 
+ {
     mword a,d; asm volatile("rdtsc" : "=a"(a), "=d"(d)); return (d<<32)|a;
   }
 

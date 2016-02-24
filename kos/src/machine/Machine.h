@@ -38,6 +38,12 @@ class Machine : public NoObject {
   static void bootCleanup();
 
 public:
+  /* A2 */
+  static mword cycles;
+  static mword epoch;
+  static mword granu;
+  /* A2 */
+  
   static void initAP(mword idx)                        __section(".boot.text");
   static void initBSP(mword mag, vaddr mb, mword idx)  __section(".boot.text");
   static void bootMain();

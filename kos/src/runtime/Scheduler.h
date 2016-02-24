@@ -19,17 +19,21 @@
 
 #include "generic/EmbeddedContainers.h"
 #include "runtime/Runtime.h"
+#include "generic/tree.h"
 
 class Thread;
+class ThreadNode;
 
 class Scheduler {
   friend void Runtime::idleLoop(Scheduler*);
   bufptr_t idleStack[minimumStack];
 
-  // very simple N-class prio scheduling
   BasicLock readyLock;
+  BasicLock printLock;
+  
   volatile mword readyCount; 
-  EmbeddedList<Thread> readyQueue[maxPriority];
+  Tree<ThreadNode> *readyTree;
+  
   volatile mword preemption;
   volatile mword resumption;
 
@@ -44,13 +48,26 @@ class Scheduler {
   const Scheduler& operator=(const Scheduler&) = delete; // no assignment
 
 public:
-  Scheduler();
-  void setPartner(Scheduler& s) { partner = &s; }
-  static void resume(Thread& t);
-  void preempt();
-  void suspend(BasicLock& lk);
-  void suspend(BasicLock& lk1, BasicLock& lk2);
-  void terminate() __noreturn;
+    Scheduler(); 
+
+    /* A2 */
+    // in miliseconds
+    static mword schedMinGranularity;
+    static mword defaultEpochLength;
+
+    // in ticks
+    static mword epochLengthTicks;
+    static mword defaultEpochLengthTicks;
+    static mword schedMinGranularityTicks;
+    /* A2 */
+    
+    bool switchTest(Thread* t);
+    void setPartner(Scheduler& s) { partner = &s; }
+    static void resume(Thread& t);
+    void preempt();
+    void suspend(BasicLock& lk);
+    void suspend(BasicLock& lk1, BasicLock& lk2);
+    void terminate() __noreturn;
 };
 
 #endif /* _Scheduler_h_ */

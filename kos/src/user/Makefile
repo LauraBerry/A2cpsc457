@@ -12,6 +12,7 @@ OBJ=$(SRC:%.cc=%.o)
 EXE=$(SRC:%.cc=exec/%)
 
 all: $(EXE) exec/motb
+all: exec/schedparam
 
 .PHONY: .FORCE
 
@@ -32,6 +33,14 @@ exec/motb: .FORCE
 	@echo >> $@
 	@echo -n "Build Date: " >> $@
 	@date >> $@
+	@echo >> $@
+
+exec/schedparam: .FORCE
+	@echo creating $@
+	@mkdir -p exec
+	@echo > $@
+	@echo "4" >> $@
+	@echo -n "20" >> $@
 	@echo >> $@
 
 echo:

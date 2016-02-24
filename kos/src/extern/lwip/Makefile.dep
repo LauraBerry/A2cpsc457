@@ -293,7 +293,7 @@ sockets.o: lwip/src/api/sockets.c lwip/src/include/lwip/opt.h lwipopts.h \
  lwip/src/include/lwip/tcpip.h lwip/src/include/lwip/api_msg.h \
  lwip/src/include/lwip/netifapi.h lwip/src/include/lwip/timers.h
 lwip_glue.o: lwip_glue.cc \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../testoptions.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../testoptions.h \
  lwip/src/include/lwip/def.h lwip/src/include/lwip/arch.h arch/cc.h \
  lwip/src/include/lwip/opt.h lwipopts.h lwip/src/include/lwip/debug.h \
  lwip/src/include/lwip/dhcp.h lwip/src/include/lwip/netif.h \
@@ -308,48 +308,49 @@ lwip_glue.o: lwip_glue.cc \
  lwip/src/include/lwip/api.h lwip/src/include/lwip/netifapi.h \
  lwip/src/include/lwip/timers.h lwip/src/include/netif/etharp.h \
  lwip/src/include/netif/ppp_oe.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/MemoryManager.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/Memory.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../generic/bitmanip.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../generic/basics.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../include/kostypes.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/OutputBasic.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/asmshare.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/SpinLock.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/CPU.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/Processor.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/asmdecl.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/Descriptors.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/Output.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../generic/Bitmap.h
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/MemoryManager.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/Memory.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/bitmanip.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/basics.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../include/kostypes.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/OutputBasic.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/asmshare.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/SpinLock.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/CPU.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/Processor.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/asmdecl.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/Descriptors.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/Output.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/Bitmap.h
 sys_arch.o: sys_arch.cc \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../testoptions.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../testoptions.h \
  lwip/src/include/lwip/sys.h lwip/src/include/lwip/opt.h lwipopts.h \
  lwip/src/include/lwip/debug.h lwip/src/include/lwip/arch.h arch/cc.h \
  lwip/src/include/lwip/err.h arch/sys_arch.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../generic/Buffers.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../generic/basics.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../include/kostypes.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/OutputBasic.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../runtime/SyncQueues.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../runtime/BlockingSync.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../generic/EmbeddedContainers.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../runtime/Runtime.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/AddressSpace.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/FrameManager.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../generic/Bitmap.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../generic/bitmanip.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/MemoryManager.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/Memory.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/asmshare.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/SpinLock.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/CPU.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/Processor.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/asmdecl.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/Descriptors.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/Output.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/Paging.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../machine/Machine.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../runtime/Scheduler.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../runtime/Thread.h \
- /home/ugb/lnberry/kosClean/src/extern/lwip/../../kernel/Clock.h
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/Buffers.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/basics.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../include/kostypes.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/OutputBasic.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../runtime/SyncQueues.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../runtime/BlockingSync.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/EmbeddedContainers.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../runtime/Runtime.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/AddressSpace.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/FrameManager.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/Bitmap.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/bitmanip.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/MemoryManager.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/Memory.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/asmshare.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/SpinLock.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/CPU.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/Processor.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/asmdecl.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/Descriptors.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/Output.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/Paging.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../machine/Machine.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../runtime/Scheduler.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../generic/tree.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../runtime/Thread.h \
+ /home/ugb/lnberry/cpsc457a2/kos/src/extern/lwip/../../kernel/Clock.h

@@ -24,7 +24,9 @@ class Scheduler;
 class UnblockInfo;
 
 class Thread : public EmbeddedList<Thread>::Link {
+
   friend class Scheduler;   // Scheduler accesses many internals
+  friend class ThreadNode;	// ThreadNode needs access to vRuntime.
   friend void Runtime::postResume(bool, Thread&, AddressSpace&);
 
   vaddr stackPointer;       // holds stack pointer while thread inactive
@@ -34,12 +36,22 @@ class Thread : public EmbeddedList<Thread>::Link {
   mword priority;           // scheduling priority
   bool affinity;            // stick with scheduler
   Scheduler* nextScheduler; // resume on same core (for now)
-
+  
   Runtime::MachContext ctx;
   Runtime::ThreadStats stats;
 
   Thread(const Thread&) = delete;
   const Thread& operator=(const Thread&) = delete;
+  
+  /* A2 */
+  mword vRuntime = 0;       // virtual runtime, needed to sort the tree
+  bool isAwake = true;      // detect if thread is awake
+  mword startTime;          // start of waiting time
+  mword waitTime = 0;       // total wating time
+  mword runStart = 0;
+  mword runEnd = 0;
+  bool running = false;
+  /* A2 */
 
 protected:
   enum State { Running, Blocked, Cancelled, Finishing } state;
@@ -83,7 +95,6 @@ public:
   Thread* setPriority(mword p)      { priority = p; return this; }
   Thread* setAffinity(Scheduler* s) { affinity = (nextScheduler = s); return this; }
   Scheduler* getAffinity() const    { return affinity ? nextScheduler : nullptr; }
-
   const Runtime::ThreadStats& getStats() const { return stats; }
 };
 

@@ -95,7 +95,6 @@ Scheduler::Scheduler() : readyCount(0), preemption(0), resumption(0), partner(th
 	readyCount += 1;
     
     /* A2 */
-	idleThread->vRuntime=0;
 	timeSlice=Scheduler::epochLengthTicks/readyCount;
     totalPriority+=idleThread->priority +1;
     /* A2 */
@@ -138,7 +137,7 @@ void Scheduler::enqueue(Thread& t) {
     if(!t.isAwake)
     {
         // update vRuntime
-        t.vRuntime = smallestRuntime;
+        t.vRuntime += smallestRuntime;
         
         // set to awake
         t.isAwake = true;
@@ -161,23 +160,11 @@ void Scheduler::enqueue(Thread& t) {
 ***********************************/
 void Scheduler::preempt(){		// IRQs disabled, lock count inflated
 	//Get current running thread
-	Thread* currentThread = Runtime::getCurrThread();
-    
-    /* A2 */
-    // get the start and end running times
-    if(currentThread->runStart < currentThread->runEnd)
-    {
-        currentThread->runEnd = CPU::readTSC();
-    }
-    else
-    {
-        currentThread->runStart = CPU::readTSC();
-    }
-    /* A2 */
-    
+	Thread* currentThread = Runtime::getCurrThread();    
 	//Get its target scheduler
 	Scheduler* target = currentThread->getAffinity();						
-	
+	currentThread->runStart = CPU::readTSC();
+
 	//Check if the thread should move to a new scheduler
 	//(based on the affinity)
 	if(target != this && target){						
@@ -205,13 +192,11 @@ bool Scheduler::switchTest(Thread* t)
 		//if more than mingram
 			//check if time slice has past
 	//no need for while loop or to mess with isAwake.
-
     // get the runTime
     mword runTime = (t->runEnd) - (t->runStart);
-	
+
     // update vRuntime
     t->vRuntime+=runTime/(t->priority+1);
-    
 	if(t->vRuntime<smallestRuntime)
 	{
 		smallestRuntime=t->vRuntime;
@@ -253,7 +238,8 @@ inline void Scheduler::switchThread(Scheduler* target, Args&... a)
     if(!readyTree->empty())
     {
         nextThread = readyTree->popMinNode()->th;
-        
+		nextThread->runEnd=CPU::readTSC();
+		nextThread->runStart=nextThread->runEnd;
         /* A2 */
         // calculate time slice
         timeSlice=((Scheduler::epochLengthTicks*nextThread->priority+1)/(totalPriority+1)); 
@@ -273,6 +259,9 @@ inline void Scheduler::switchThread(Scheduler* target, Args&... a)
 
         // decrease total priority
         totalPriority -= nextThread->priority-1;
+        
+        // waiting time
+        nextThread->waitTime += CPU::readTSC() - nextThread->startTime;
         /* A2 */
 
         readyCount -= 1;
@@ -288,10 +277,6 @@ threadFound:
   readyLock.release();
   resumption += 1;
   Thread* currThread = Runtime::getCurrThread();
-  
-  /* A2 */
-  waitTime = CPU::readTSC() - startTime;
-  /* A2 */
   
   GENASSERTN(currThread && nextThread && nextThread != currThread, currThread, ' ', nextThread);
   if (target) currThread->nextScheduler = target; // yield/preempt to given processor
@@ -348,14 +333,14 @@ void Scheduler::resume(Thread& t) {
 	done but not destroyed yet
 ***********************************/
 void Scheduler::terminate() {
-  /* A2
-  KOUT::outl();
-  KOUT::out1("Total wait time: ");
-  KOUT::out1(waitTime);
-  KOUT::outl();
-  A2 */
   Runtime::RealLock rl;
   Thread* thr = Runtime::getCurrThread();
+  /* A2 */
+  KOUT::outl();
+  KOUT::out1("Total wait time: ");
+  KOUT::out1(thr->waitTime);
+  KOUT::outl();
+  /* A2 */
   GENASSERT1(thr->state != Thread::Blocked, thr->state);
   thr->state = Thread::Finishing;
   switchThread(nullptr);
