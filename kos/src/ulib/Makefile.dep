@@ -1,0 +1,9 @@
+pthread.o: pthread.cc \
+ /home/ugb/lnberry/kosClean/src/ulib/../testoptions.h \
+ /home/ugb/lnberry/kosClean/src/ulib/../include/syscalls.h \
+ /home/ugb/lnberry/kosClean/src/ulib/../include/kostypes.h \
+ /home/ugb/lnberry/kosClean/src/ulib/../include/pthread.h \
+ /home/ugb/lnberry/kosClean/src/ulib/../include/syscalls.h
+libKOS.o: libKOS.cc /home/ugb/lnberry/kosClean/src/ulib/../testoptions.h \
+ /home/ugb/lnberry/kosClean/src/ulib/../include/syscalls.h \
+ /home/ugb/lnberry/kosClean/src/ulib/../include/kostypes.h
