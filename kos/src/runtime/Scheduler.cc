@@ -138,7 +138,7 @@ void Scheduler::enqueue(Thread& t) {
     if(!t.isAwake)
     {
         // update vRuntime
-        t.vRuntime += smallestRuntime;
+        t.vRuntime = smallestRuntime;
         
         // set to awake
         t.isAwake = true;
